@@ -172,31 +172,21 @@ TipCvorBinarnogStabla *korigujStrukturuNebalansiranogBST(TipCvorBinarnogStabla *
 # Kreiranje Balansiranog BST
 ```c
 
-TipCvorBinarnogStabla *KreiranjeBalansiranogBST(TipCvorBinarnogStabla *paKoren, unsigned paBrojCvorovaUBST)
+TipCvorBinarnogStabla *kreirajBalansiraniBST(TipCvorBinarnogStabla *koren, unsigned brojCvorovaUBST)
 {
-    // Deklaracija dinamickog niza adresa cvorova BST.
-    TipCvorBinarnogStabla **NizAdresaCvorovaBST = (TipCvorBinarnogStabla **)
-                                                   malloc(paBrojCvorovaUBST * sizeof(TipCvorBinarnogStabla *));
+    TipCvorBinarnogStabla **nizAdresaCvorovaBST = (TipCvorBinarnogStabla **)
+                                                   malloc(brojCvorovaUBST * sizeof(TipCvorBinarnogStabla *));
 
-    // Deklaracija promenljive za indeks elementa niza koji ce biti popunjen adresama cvorova BST
-    // u rastucem redosledu vrednosti njihovih podataka.
-    unsigned IndeksElementaNizaAdresaCvorovaBST = 0;
+    unsigned indeksElementaNizaAdresaCvorovaBST = 0;
 
-    // Poziv funkcije za popunjavanje niza adresa cvorova BST sortiranih u neopadajuci redosled.
-    // Prosledjuju se adresa korena BST, adresa prvog elementa niza i adresa indeksa prvog elementa niza.
-    PopunjavanjeNizaAdresaCvorovaBST(paKoren, NizAdresaCvorovaBST, &IndeksElementaNizaAdresaCvorovaBST);
+    popuniNizAdresaCvorovaBST(koren, nizAdresaCvorovaBST, &indeksElementaNizaAdresaCvorovaBST);
 
-    /* Poziv funkcije za korigovanje strukture pocetnog nebalansiranog BST cime se kreira struktura
-       balansiranog BST. Prosledjuju se adresa prvog elementa sortiranog niza adresa cvorova
-       nebalansiranog BST, indeks prvog i indeks poslednjeg elementa niza.
-       Funkcija vraca adresu korena balansiranog BST*/
-    TipCvorBinarnogStabla *KorenBalansiranogBST =
-                            KorigovanjeStruktureNebalansiranogBST(NizAdresaCvorovaBST, 0, paBrojCvorovaUBST - 1);
+    TipCvorBinarnogStabla *korenBalansiranogBST =
+                            korigujStrukturuNebalansiranogBST(nizAdresaCvorovaBST, 0, brojCvorovaUBST - 1);
 
-    // Dealokacija memorije koju zauzima niz adresa cvorova BST.
-    free(NizAdresaCvorovaBST);
+    free(nizAdresaCvorovaBST);
 
-    // Funkcija vraca adresu korena balansiranog BST.
-    return KorenBalansiranogBST;
+    return korenBalansiranogBST;
 }
+
 ```
