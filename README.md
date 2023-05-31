@@ -103,8 +103,29 @@ int main(void) {
 }
 
 ```
-Dodaj Cvor U stablo
+# Dodaj Cvor U stablo
 ```c
+CvorBinarnogStabla *NapraviCvorBSTIUpisiVrednost(int paPodatak) {
 
+  CvorBinarnogStabla *NoviCvor =
+      (CvorBinarnogStabla *)malloc(sizeof(CvorBinarnogStabla));
 
+  NoviCvor->vrednost = paPodatak;
+
+  NoviCvor->levo = NULL;
+  NoviCvor->desno = NULL;
+
+  return NoviCvor;
+}
+CvorBinarnogStabla *DodavanjeCvoraUBST(CvorBinarnogStabla *paKoren,
+                                       int paPodatak) {
+
+  if (!paKoren)
+    return NapraviCvorBSTIUpisiVrednost(paPodatak);
+  if (paPodatak < paKoren->vrednost)
+    paKoren->levo = DodavanjeCvoraUBST(paKoren->levo, paPodatak);
+  else
+    paKoren->desno = DodavanjeCvoraUBST(paKoren->desno, paPodatak);
+  return paKoren;
+}
 ```
