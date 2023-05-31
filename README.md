@@ -129,3 +129,19 @@ CvorBinarnogStabla *DodavanjeCvoraUBST(CvorBinarnogStabla *paKoren,
   return paKoren;
 }
 ```
+# Slicna Stabla
+```c
+int Slicna_Stabla(CvorBinarnogStabla* glava1, CvorBinarnogStabla* glava2) {
+  if (glava1 == NULL && glava2 == NULL)
+    return 1;
+
+  if (glava1 == NULL || glava2 == NULL)
+    return 0;
+
+  int levaSlicna = Slicna_Stabla(glava1->levo, glava2->levo);
+  int desnaSlicna = Slicna_Stabla(glava1->desno, glava2->desno);
+
+  return levaSlicna && desnaSlicna;
+}
+
+```
