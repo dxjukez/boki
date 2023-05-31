@@ -145,3 +145,27 @@ int Slicna_Stabla(CvorBinarnogStabla* glava1, CvorBinarnogStabla* glava2) {
 }
 
 ```
+# Korigovanje Nebalansiranog BST
+
+```c
+
+TipCvorBinarnogStabla *korigujStrukturuNebalansiranogBST(TipCvorBinarnogStabla *nizAdresaCvorovaBST[],
+                                                        int prviElement, int poslednjiElement)
+{
+    if (prviElement > poslednjiElement)
+        return NULL;
+
+    int srednjiElement = (prviElement + poslednjiElement) / 2;
+
+    TipCvorBinarnogStabla *korenBalansiranogBST = nizAdresaCvorovaBST[srednjiElement];
+
+    korenBalansiranogBST->Levi = korigujStrukturuNebalansiranogBST(nizAdresaCvorovaBST,
+                                                                  prviElement, srednjiElement - 1);
+
+    korenBalansiranogBST->Desni = korigujStrukturuNebalansiranogBST(nizAdresaCvorovaBST,
+                                                                   srednjiElement + 1, poslednjiElement);
+
+    return korenBalansiranogBST;
+}
+
+```
